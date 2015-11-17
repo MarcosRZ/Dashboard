@@ -1,0 +1,16 @@
+{
+  "name": "lithium-web-server",
+  "version": "1.0.0",
+  "description": "Ultra-light, scallable, platform-independent, awesome web server",
+  "main": "lithium.js",
+  "dependencies": {
+    "express": "^4.12.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test/test.js",
+    "start": "node lithium.js"
+  },
+  "author": "Marcos RZ",
+  "license": "GPL-3.0"
+}
