@@ -20,7 +20,7 @@ Controllers.controller('CpuController', ['$scope', '$interval', 'RamService', 'D
             DiskService.get($scope.updateDisk);
         }
 
-        $interval($scope.work, 1000);
+        $interval($scope.work, 1000) ;
     
     }
 ]);

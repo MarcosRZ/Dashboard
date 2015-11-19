@@ -4,6 +4,7 @@
   "description": "Ultra-light, scallable, platform-independent, awesome web server",
   "main": "lithium.js",
   "dependencies": {
+    "diskusage": "^0.1.4",
     "express": "^4.12.4"
   },
   "devDependencies": {},

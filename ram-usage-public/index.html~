@@ -60,9 +60,9 @@
 
                 <table class="table table-responsive">
                     <tr><th>Param</th><th>Value (MB)</th></tr>
-                    <tr><td>Total</td><td>{{disk.total / 1024 | number : 2}}</td></tr>
-                    <tr><td>Free</td><td>{{disk.free / 1024 | number : 2}}</td></tr>
-                    <tr><td>Available</td><td>{{disk.available / 1024 | number : 2}}</td></tr>
+                    <tr><td>Total</td><td>{{disk.total / 1024 / 1024 | number : 2}}</td></tr>
+                    <tr><td>Free</td><td>{{disk.free / 1024 / 1024 | number : 2}}</td></tr>
+                    <tr><td>Available</td><td>{{disk.available / 1024 / 1024 | number : 2}}</td></tr>
                 </table>
             </div>
         </div>

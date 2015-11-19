@@ -1,16 +1,12 @@
 var os = require('os')
 
-var x = {
+var ram = require('./ram')
+var disk = require('./disk')
 
-    get: () => {
-        
-        return {
-            load: os.loadavg(),
-            totalmem: os.totalmem(),
-            freemem: os.freemem()
-        }
+var svc = {
 
-    }
+    ram: ram,
+    disk: disk
 }
 
-module.exports = x
+module.exports = svc
