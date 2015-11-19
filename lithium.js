@@ -18,7 +18,7 @@ var stats = require('./stats')
 
 var app = express();
 var port = (process.argv[2] || 3000);
-var rootPath = (process.argv[3] || path.join(__dirname, 'ram-usage-public'));
+var rootPath = (process.argv[3] || path.join(__dirname, 'dashboard-public'));
 
 // Log requests to console
 //app.use(logger);
@@ -31,8 +31,12 @@ app.get('/ram', (req,res) => {
 
 app.get('/disk', (req,res) => {
 
+try{
     stats.disk.get((data) => { res.send(data) })
-
+} catch(err){
+	console.log(err)
+	res.send({})
+}
 })
 
 

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Ram Usage</title>
+
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="angular/app.js"></script>
+        <script src="angular/controllers/controllers.js"></script>
+        <script src="angular/services/services.js"></script>
+    <!-- Bootstrap -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body ng-app="cpuApp">
+
+    <div class="container" ng-controller="CpuController">
+
+
+        <div class="row">
+
+            <div class="col-lg-6">
+
+                <h1>Ram Usage</h1>
+    
+                <div class="progress">
+                    <div class="progress-bar progress-bar-default" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{ram.mempercent}}%">
+                    <span >RAM Usage: {{ram.mempercent | number : 2}}%</span>
+
+                    </div>
+                </div>
+
+                <table class="table table-responsive">
+                    <tr><th>Param</th><th>Value (MB)</th></tr>
+                    <tr><td>Total Mem</td><td>{{ram.totalmem / 1024 / 1024 | number : 2}}</td></tr>
+                    <tr><td>Free Mem</td><td>{{ram.freemem / 1024 / 1024 | number : 2}}</td></tr>
+                    <tr><td>Used Mem</td><td>{{(ram.totalmem - ram.freemem) / 1024 / 1024 | number : 2}}</td></tr>
+                </table>
+            </div>
+
+            <div class="col-lg-6">
+
+                <h1>Disk Usage</h1>
+    
+                <div class="progress">
+                    <div class="progress-bar progress-bar-default" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{disk.percent}}%">
+                    <span >Disk Usage: {{disk.percent | number : 2}}%</span>
+
+                    </div>
+                </div>
+
+                <table class="table table-responsive">
+                    <tr><th>Param</th><th>Value (MB)</th></tr>
+                    <tr><td>Total</td><td>{{disk.total / 1024 | number : 2}}</td></tr>
+                    <tr><td>Free</td><td>{{disk.free / 1024 | number : 2}}</td></tr>
+                    <tr><td>Available</td><td>{{disk.available / 1024 | number : 2}}</td></tr>
+                </table>
+            </div>
+        </div>
+          <div class="container">
+            <div id="gg1" class="gauge" data-value="0" data-min="0" data-max="100" data-gaugeWidthScale="0.6"></div>
+            <input type="button" id="gg1_refresh" class="btn" value="Random Refresh" />
+          </div>
+          <script src="scripts/raphael-2.1.4.min.js"></script>
+          <script src="scripts/justgage-1.1.0.min.js"></script>
+
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    </div>
+
+  </body>
+</html>
