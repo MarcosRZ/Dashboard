@@ -25,61 +25,88 @@
 
     <div class="container" ng-controller="CpuController">
 
+        <div>
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#ram" aria-controls="ram" role="tab" data-toggle="tab">
+                        <span class="glyphicon glyphicon-hdd"></span>
+                        RAM
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#disk" aria-controls="disk" role="tab" data-toggle="tab">
+                        <span class="glyphicon glyphicon-hdd"></span>
+                        HDD
+                    </a>
+                </li>
+            </ul>
+        </div>
 
         <div class="row">
+            <div class="col-lg-10">
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="ram">
+                    <div class="row">
+                        <div class="col-lg-6">
+                          
+                            <h1>Ram Usage</h1>
+                            
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-default" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{ram.percent}}%">
+                                    <span >RAM Usage: {{ram.percent | number : 2}}%</span>
+                                </div>
+                            </div>
 
-            <div class="col-lg-6">
-
-                <h1>Ram Usage</h1>
-    
-                <div class="progress">
-                    <div class="progress-bar progress-bar-default" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{ram.mempercent}}%">
-                    <span >RAM Usage: {{ram.mempercent | number : 2}}%</span>
-
+                            <table class="table table-responsive">
+                                <tr><th>Param</th><th>Value (MB)</th></tr>
+                                <tr><td>Total Mem</td><td>{{ram.totalmem / 1024 / 1024 | number : 2}}</td></tr>
+                                <tr><td>Free Mem</td><td>{{ram.freemem / 1024 / 1024 | number : 2}}</td></tr>
+                                <tr><td>Used Mem</td><td>{{(ram.totalmem - ram.freemem) / 1024 / 1024 | number : 2}}</td></tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
-                <table class="table table-responsive">
-                    <tr><th>Param</th><th>Value (MB)</th></tr>
-                    <tr><td>Total Mem</td><td>{{ram.totalmem / 1024 / 1024 | number : 2}}</td></tr>
-                    <tr><td>Free Mem</td><td>{{ram.freemem / 1024 / 1024 | number : 2}}</td></tr>
-                    <tr><td>Used Mem</td><td>{{(ram.totalmem - ram.freemem) / 1024 / 1024 | number : 2}}</td></tr>
-                </table>
-            </div>
+                <div role="tabpanel" class="tab-pane" id="disk">
 
-            <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-6">
 
-                <h1>Disk Usage</h1>
-    
-                <div class="progress">
-                    <div class="progress-bar progress-bar-default" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{disk.percent}}%">
-                    <span >Disk Usage: {{disk.percent | number : 2}}%</span>
+                            <h1>Disk Usage</h1>
 
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-default" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{disk.percent}}%">
+                                    <span >Disk Usage: {{disk.percent | number : 2}}%</span>
+                                </div>
+                            </div>
+
+                            <table class="table table-responsive">
+                                <tr><th>Param</th><th>Value (MB)</th></tr>
+                                <tr><td>Total</td><td>{{disk.total / 1024 | number : 2}}</td></tr>
+                                <tr><td>Free</td><td>{{disk.free / 1024 | number : 2}}</td></tr>
+                                <tr><td>Available</td><td>{{disk.available / 1024 | number : 2}}</td></tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
-
-                <table class="table table-responsive">
-                    <tr><th>Param</th><th>Value (MB)</th></tr>
-                    <tr><td>Total</td><td>{{disk.total / 1024 | number : 2}}</td></tr>
-                    <tr><td>Free</td><td>{{disk.free / 1024 | number : 2}}</td></tr>
-                    <tr><td>Available</td><td>{{disk.available / 1024 | number : 2}}</td></tr>
-                </table>
             </div>
+
         </div>
-          <div class="container">
-            <div id="gg1" class="gauge" data-value="0" data-min="0" data-max="100" data-gaugeWidthScale="0.6"></div>
-            <input type="button" id="gg1_refresh" class="btn" value="Random Refresh" />
-          </div>
-          <script src="scripts/raphael-2.1.4.min.js"></script>
-          <script src="scripts/justgage-1.1.0.min.js"></script>
-
-
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
+            <div class="col-lg-2">
+                <div id="ram-gauge" class="gauge" data-value="0" data-min="0" data-max="100" data-gaugeWidthScale="0.6"></div>
+                <div id="disk-gauge" class="gauge" data-value="0" data-min="0" data-max="100" data-gaugeWidthScale="0.6"></div>
+            </div>
     </div>
+
+
+    <script src="scripts/raphael-2.1.4.min.js"></script>
+    <script src="scripts/justgage-1.1.0.min.js"></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
 
   </body>
 </html>
